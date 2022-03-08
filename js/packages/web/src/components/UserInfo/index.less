@@ -1,0 +1,25 @@
+.app-user-info {
+  padding: 20px;
+  width: 100%;
+  background: transparent;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  // z-index: 10;
+  .app-user-balance {
+    white-space: nowrap;
+    text-align: left;
+    font-style: normal;
+    // font-weight: bold;
+    line-height: 60px;
+    font-size: 28px;
+    color: rgba(200, 141, 74, 1);
+    @media (max-width: @screen-sm-min) {
+      font-size: 16px;
+    }
+  }
+}
