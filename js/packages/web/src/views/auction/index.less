@@ -266,3 +266,122 @@ h6.info-title {
   font-style: normal;
   font-size: 0.9rem;
 }
+
+.info-view-line{
+  position: relative;
+  background: rgb(56 54 54 / 69%);
+  padding: 20px;
+  border-radius: 10px;
+  
+}
+
+
+.info-view-line .info-title{
+  position: relative;
+  color: rgb(1, 237, 255);
+  line-height: 1.5;
+  opacity: 1;
+}
+
+.info-view-line .info-tip{
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(153, 153, 153);
+    font-size: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(112, 112, 112);
+    margin-bottom: 20px;
+}
+
+.info-view-line .info-m-tip{
+  margin-bottom: 20px;
+  color: rgb(153, 153, 153);
+}
+
+
+.table-trend-wraper{
+  display: block;
+  text-align: center;
+  background: rgba(56, 54, 54, 0.69);
+  padding: 20px 0;
+  border-radius: 10px;
+
+  .ant-col{
+    line-height: 2.3;
+    border-left: 1px solid rgb(73, 69, 69);
+  }
+  .table-trend-name{
+    color: rgb(1, 237, 255);
+    border-left: 1px solid transparent;
+  }
+  .plus{
+    color: rgb(0, 255, 144);
+  }
+  .discount{
+    color: rgb(255, 79, 51);
+  }
+}
+
+.auction-relative-topics{
+  background: rgba(56, 54, 54, 0.69);
+  padding: 0;
+  border-radius: 10px;
+  .relative-topic-title{
+    color: rgb(1, 237, 255);
+    line-height: 4;
+    // margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  ul{
+    padding: 0;
+    margin: 0;
+    // li:nth-child(2n){
+    //   // background-color: rgb(40, 41, 45);
+    // }
+    li:nth-child(odd){
+      background-color: rgba(248, 248, 248, 0.123);;
+    }
+  }
+  .relative-topic{
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 2.1;
+    .r-topic-l{
+
+    }
+    .r-topic-r{
+
+    }
+  }
+}
+.a-attributes{
+display: block;
+.attribute-list{
+  background: rgba(56, 54, 54, 0.69);
+  padding: 0;
+  border-radius: 10px;
+  .attribute-name{
+    color: #01edff;
+    opacity: 1;
+    line-height: 3;
+    padding: 0 20px;
+    font-weight: normal;
+  }
+  .ant-card-head{
+    padding: 0;
+    min-height: 20px;
+    line-height: 2;
+    border-bottom: 1px solid #6e6969;
+    .ant-card-head-title{
+      padding: 0;
+    }
+  }
+  .ant-card-body{
+    padding: 0;
+    line-height: 3;
+    color: rgb(153, 153, 153);
+  }
+}
+}

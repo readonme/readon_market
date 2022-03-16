@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Card, Carousel, Col, List, Row, Skeleton } from 'antd';
+import { Button, Card, Carousel, Col, List, Row, Skeleton ,Table} from 'antd';
 import { AuctionCard } from '../../components/AuctionCard';
 import { Connection } from '@solana/web3.js';
 import { AuctionViewItem } from '@oyster/common/dist/lib/models/metaplex/index';
@@ -15,6 +15,26 @@ import {
 import { ArtContent } from '../../components/ArtContent';
 
 import { format } from 'timeago.js';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 import {
   AuctionState,
@@ -80,6 +100,135 @@ export const AuctionItem = ({
   );
 };
 
+const MonthChart = ()=> {
+
+  const histoData = {
+    labels: [
+      'Feb 09',
+      'Feb 11',
+      'Feb 13',
+      'Feb 15',
+    ],
+    datasets: [
+      {
+        label: '',
+        data: [10,1000,40,60],
+        backgroundColor: 'rgb(255, 255, 255)',
+        borderColor: 'rgb(1, 237, 255)',
+        borderWidth: 1,
+        tension:0.3
+      },
+    ],
+    
+  };
+  const histoDptions= {
+    plugins: {
+      legend: false,
+      tooltip: false,
+    }
+  };
+
+  // @ts-ignore
+  return <Line data={histoData} options={histoDptions}/>;
+};
+
+const TableTrend = ()=>{
+  const dataSource = [
+    {
+      name: 'Influence',
+      day: '14%',
+      c7d: '-1.4%',
+      c14d: '19%',
+      c30d: '-10%',
+    },  {
+      name: 'Influence',
+      day: '14%',
+      c7d: '-1.4%',
+      c14d: '19%',
+      c30d: '-10%',
+    },
+  ];
+  
+  const columns = [
+    {
+      title: '',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '24th',
+      dataIndex: 'day',
+      key: 'day',
+    },
+    {
+      title: '7d',
+      dataIndex: 'c7d',
+      key: 'c7d',
+    },
+    {
+      title: '14d',
+      dataIndex: 'c14d',
+      key: 'c14d',
+    },
+    {
+      title: '30d',
+      dataIndex: 'c30d',
+      key: 'c30d',
+    },
+  ];
+  
+  // @ts-ignore
+  return (
+    <div className='table-trend-wraper'>
+      <Row>
+        <Col span={5} className={'table-trend-name'}></Col>
+        <Col span={5}>24th</Col>
+        <Col span={5}>7d</Col>
+        <Col span={5}>14d</Col>
+        <Col span={4}>30d</Col>
+      </Row>
+      <Row>
+        <Col span={5} className={'table-trend-name'}>Influence</Col>
+        <Col span={5} className={'table-trend-count discount'}>-1.4%</Col>
+        <Col span={5} className={'table-trend-count plus'}>3.4%</Col>
+        <Col span={5} className={'table-trend-count discount'}>-5.4%</Col>
+        <Col span={4} className={'table-trend-count plus'}>11.4%</Col>
+      </Row>
+    </div>
+
+  );
+}
+
+const RelateTopic = ()=>{
+  return (
+    <div className='auction-relative-topics'>
+      <div className='relative-topic-title'>Related topics</div>
+      <ul>
+        <li className='relative-topic'>
+          <span className='r-topic-l'>1 Themobaric weapin - Topic</span>
+          <span className='r-topic-r'>Breakout</span>
+        </li>
+
+        <li className='relative-topic'>
+          <span className='r-topic-l'>2 Themobaric weapin - Topic</span>
+          <span className='r-topic-r'>Breakout</span>
+        </li>
+
+        <li className='relative-topic'>
+          <span className='r-topic-l'>3 Themobaric weapin - Topic</span>
+          <span className='r-topic-r'>Breakout</span>
+        </li>
+
+        <li className='relative-topic'>
+          <span className='r-topic-l'>4 Themobaric weapin - Topic</span>
+          <span className='r-topic-r'>Breakout</span>
+        </li>
+      </ul>
+
+    </div>
+  )
+}
+
 export const AuctionView = () => {
   const { width } = useWindowDimensions();
   const { id } = useParams<{ id: string }>();
@@ -138,6 +287,9 @@ export const AuctionView = () => {
       />
     );
   });
+
+ 
+
 
   if (width < 768) {
     return (
@@ -217,19 +369,44 @@ export const AuctionView = () => {
         </Col>
         {attributes && (
           <Col
-            className="auction-mobile-section about-nft-collection a-attributes"
+            className="auction-mobile-section about-nft-collection a-attributes "
             span={24}
           >
-            <h6>Attributes</h6>
-            <List grid={{ column: 4 }}>
-              {attributes.map((attribute, index) => (
-                <List.Item key={`${attribute.value}-${index}`}>
-                  <Card title={attribute.trait_type}>{attribute.value}</Card>
-                </List.Item>
-              ))}
-            </List>
+            <div className='attribute-list'>
+              <h6 className='attribute-name'>Attributes</h6>
+              <List grid={{ column: 4 }}>
+                {attributes.map((attribute, index) => (
+                  <List.Item key={`${attribute.value}-${index}`}>
+                    <Card title={attribute.trait_type}>{attribute.value}</Card>
+                  </List.Item>
+                ))}
+              </List>
+            </div>
+
           </Col>
         )}
+
+        <Col className="auction-mobile-section" span={24}>
+          <div className={'info-view info-view-line'}>
+            <h6 className={'info-title'}>UKraine</h6>
+            <div  className={'info-tip'} style={{ display: 'flex' }}>
+              Countyr in Europe
+            </div>
+            <h6 className={'info-title'}>World, past 30 days</h6>
+            <div  className={'info-m-tip'} style={{ display: 'flex' }}>
+              Interest over time
+            </div>
+            <MonthChart />
+          </div>
+        </Col>
+        <Col className="auction-mobile-section" span={24}>
+          <div className={'info-view info-view-table'}>
+              <TableTrend /> 
+          </div>
+        </Col>
+        <Col className="auction-mobile-section" span={24}>
+              <RelateTopic />
+        </Col>
         <Col className="auction-mobile-section" span={24}>
           <div className={'info-view'}>
             <h6 className={'info-title'}>Artists</h6>
@@ -238,6 +415,7 @@ export const AuctionView = () => {
             </div>
           </div>
         </Col>
+
         <Col className="auction-mobile-section" span={24}>
           <div className={'info-view'}>
             <h6 className={'info-title'}>View on</h6>
