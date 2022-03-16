@@ -595,6 +595,27 @@ export const AuctionView = () => {
             <AuctionCard auctionView={auction} hideDefaultAction={false} />
           )}
           <AuctionBids auctionView={auction} />
+          <div className="auction-pc-section" >
+            <div className={'info-view info-view-line'}>
+              <h6 className={'info-title'}>UKraine</h6>
+              <div  className={'info-tip'} style={{ display: 'flex' }}>
+                Countyr in Europe
+              </div>
+              <h6 className={'info-title'}>World, past 30 days</h6>
+              <div  className={'info-m-tip'} style={{ display: 'flex' }}>
+                Interest over time
+              </div>
+              <MonthChart />
+            </div>
+          </div>
+          <div className="auction-pc-section">
+            <div className={'info-view info-view-table'}>
+                <TableTrend /> 
+            </div>
+          </div>
+          <div className="auction-pc-section" >
+                <RelateTopic />
+          </div>
         </Col>
       </Row>
     );
