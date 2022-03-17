@@ -26,19 +26,19 @@ export default class MetaplexDocument extends Document {
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/favicon-32x32.png"
+            href="/favicon-72x72.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="96x96"
-            href="/favicon-96x96.png"
+            href="/favicon-72x72.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/favicon-16x16.png"
+            href="/favicon-72x72.png"
           />
           <meta name="theme-color" content="#000000" />
           <meta name="description" content="ReadON | Make you addicted to reading!" />
